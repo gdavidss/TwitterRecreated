@@ -7,9 +7,13 @@
 //
 
 #import "ComposeViewController.h"
+#import "TimelineViewController.h"
+#import "APIManager.h"
 
 @interface ComposeViewController ()
-
+@property (weak, nonatomic) IBOutlet UINavigationItem *closeButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *tweetButton;
+@property (weak, nonatomic) IBOutlet UITextView *composeTextArea;
 @end
 
 @implementation ComposeViewController
@@ -17,6 +21,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (IBAction)submitTweet:(id)sender {
+    NSString *tweetContext = self.composeTextArea.text;
+    
+    [[APIManager shared] postStatusWithText:tweetContext completion:^(Tweet *tweet, NSError *error) {
+        if (error) {
+            return NSLog(@"Error composing tweet: %@", error.localizedDescription);
+        } else {
+            NSLog(@"😎😎😎 Successfully added tweet");
+            // [self.arrayOfTweets addObject:tweet];
+            //[self.tableView reloadData];
+        }
+    }];
+}
+
+- (IBAction)closeTweetCompose:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 /*

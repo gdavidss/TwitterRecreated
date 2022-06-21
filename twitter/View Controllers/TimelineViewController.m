@@ -41,6 +41,9 @@
 
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
+    /*
+     This function is called by the refresh control whenever the user pulls-to-refresh
+     */
           [self fetchTimeline];
           
          // Reload the tableView now that there is new data
@@ -51,6 +54,9 @@
 }
 
 - (void)fetchTimeline {
+    /*
+     Fetches data from the twitter API and stores it in self.arrayOfTweets
+     */
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
