@@ -23,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *tweetContent;
 
 // numbers
-@property (weak, nonatomic) IBOutlet UILabel *replyNum;
 @property (weak, nonatomic) IBOutlet UILabel *retweetNum;
 @property (weak, nonatomic) IBOutlet UILabel *likesNum;
 
