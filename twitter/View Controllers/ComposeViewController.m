@@ -18,9 +18,11 @@
 
 @implementation ComposeViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
 }
 
 - (IBAction)submitTweet:(id)sender {
@@ -31,8 +33,8 @@
             return NSLog(@"Error composing tweet: %@", error.localizedDescription);
         } else {
             NSLog(@"😎😎😎 Successfully added tweet");
-            // [self.arrayOfTweets addObject:tweet];
-            //[self.tableView reloadData];
+            [self.delegate didTweet:tweet];
+            [self dismissViewControllerAnimated:true completion:nil];
         }
     }];
 }

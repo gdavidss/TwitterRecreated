@@ -11,10 +11,11 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "ComposeViewController.h"
 #import "Tweet.h"
 #import "TweetCell.h"
 
-@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfTweets;
 @end
@@ -88,6 +89,18 @@
 }
 */
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+   UINavigationController *navigationController = [segue destinationViewController];
+   ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+   composeController.delegate = self;
+}
+
+- (void)didTweet:(Tweet *)tweet {
+    [self.arrayOfTweets insertObject:tweet atIndex:0];
+    [self.tableView reloadData];
+}
+
+
 - (IBAction)didTapLogout:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 
@@ -108,9 +121,7 @@
     
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     
-    NSString *URLString = tweet.user.profilePicture;
-    NSURL *url = [NSURL URLWithString:URLString];
-    // NSData *urlData = [NSData dataWithContentsOfURL:url];
+
     
     // formats user handle to include @
     NSString *formattedUserHandle = [NSString stringWithFormat:@"%s%@", "@", tweet.user.screenName];
@@ -119,13 +130,18 @@
     cell.userName.text = tweet.user.name;
     cell.tweetContent.text = tweet.text;
     
-    cell.profilePicture.image = nil;
-    [cell.profilePicture setImageWithURL:url];
-    
     cell.likesNum.text = @(tweet.favoriteCount).stringValue;
     cell.retweetNum.text = @(tweet.retweetCount).stringValue;
    //cell.replyNum.text =@(tweet).stringValue;
 
+    
+    NSString *URLString = tweet.user.profilePicture;
+    URLString = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    NSURL *url = [NSURL URLWithString:URLString];
+    // NSData *urlData = [NSData dataWithContentsOfURL:url];
+    cell.profilePicture.image = nil;
+    [cell.profilePicture setImageWithURL:url];
+    
     return cell;
 }
 
