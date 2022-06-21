@@ -14,7 +14,7 @@
 #import "Tweet.h"
 #import "TweetCell.h"
 
-@interface TimelineViewController () <UITableViewDataSource>
+@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfTweets;
 @end
@@ -28,6 +28,8 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
@@ -87,10 +89,10 @@
     cell.userHandle.text = tweet.user.screenName;
     cell.userName.text = tweet.user.name;
     cell.tweetContent.text = tweet.text;
-    //cell.profilePicture.image = urlData;
     
-    //[cell.profilePicture.image setImageWithURL:URLString];
-    
+    cell.profilePicture.image = nil;
+    [cell.profilePicture setImageWithURL:url];
+
     return cell;
 }
 
