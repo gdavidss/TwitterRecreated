@@ -134,6 +134,26 @@
     cell.likesNum.text = @(tweet.favoriteCount).stringValue;
     cell.retweetNum.text = @(tweet.retweetCount).stringValue;
     
+    // GD create a function that does encapsulates the two checks below
+    if (tweet.favorited == YES) {
+        // Update cell UI
+        UIImage *pressedImg = [UIImage imageNamed:@"favor-icon-red"];
+        [cell.favoriteButton setImage:pressedImg forState:UIControlStateNormal];
+    } else {
+        UIImage *pressedImg = [UIImage imageNamed:@"favor-icon"];
+        [cell.favoriteButton setImage:pressedImg forState:UIControlStateNormal];
+    }
+    
+    if (tweet.retweeted == YES) {
+        // Update cell UI
+        UIImage *pressedImg = [UIImage imageNamed:@"retweet-icon-green"];
+        [cell.retweetButton setImage:pressedImg forState:UIControlStateNormal];
+    } else {
+        UIImage *pressedImg = [UIImage imageNamed:@"retweet-icon"];
+        [cell.retweetButton setImage:pressedImg forState:UIControlStateNormal];
+    }
+
+    
     NSString *URLString = tweet.user.profilePicture;
     URLString = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     NSURL *url = [NSURL URLWithString:URLString];
