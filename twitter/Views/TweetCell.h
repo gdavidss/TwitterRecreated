@@ -27,10 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *likesNum;
 
 // buttons
-@property (weak, nonatomic) IBOutlet UIImageView *replyButton;
-@property (weak, nonatomic) IBOutlet UIImageView *retweetButton;
-@property (weak, nonatomic) IBOutlet UIImageView *likeButton;
-@property (weak, nonatomic) IBOutlet UIImageView *messageButton;
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (weak, nonatomic) IBOutlet UIButton *retweetButton;
+@property (weak, nonatomic) IBOutlet UIButton *replyButton;
+@property (weak, nonatomic) IBOutlet UIButton *messageButton;
 
 @property (weak, nonatomic) IBOutlet Tweet *tweet;
 

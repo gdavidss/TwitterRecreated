@@ -7,6 +7,7 @@
 //
 
 #import "TweetCell.h"
+#import "APIManager.h"
 
 @implementation TweetCell
 
@@ -14,6 +15,34 @@
     [super awakeFromNib];
     // Initialization code
 }
+
+- (void)refreshCellData {
+    self.likesNum.text = @(self.tweet.favoriteCount).stringValue;
+    self.retweetNum.text = @(self.tweet.retweetCount).stringValue;
+}
+
+- (IBAction)didTapFavorite:(id)sender {
+    // Update the local tweet model
+    self.tweet.favorited = YES;
+    self.tweet.favoriteCount += 1;
+    
+    // Update cell UI
+    UIImage *pressedImg = [UIImage imageNamed:@"favor-icon-red"];
+    [sender setImage:pressedImg forState:UIControlStateNormal];
+    [self refreshCellData];
+    
+    // Send a POST request to the POST favorites/create endpoint
+     [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+         if(error){
+              NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+         }
+         else {
+             NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+         }
+     }];
+}
+
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

@@ -112,6 +112,7 @@
 }
 
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.arrayOfTweets.count;
 }
@@ -121,9 +122,9 @@
     
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     
-
+    cell.tweet = tweet;
     
-    // formats user handle to include @
+    // formats user handle string to include @
     NSString *formattedUserHandle = [NSString stringWithFormat:@"%s%@", "@", tweet.user.screenName];
     cell.userHandle.text = formattedUserHandle;
     
@@ -132,8 +133,6 @@
     
     cell.likesNum.text = @(tweet.favoriteCount).stringValue;
     cell.retweetNum.text = @(tweet.retweetCount).stringValue;
-   //cell.replyNum.text =@(tweet).stringValue;
-
     
     NSString *URLString = tweet.user.profilePicture;
     URLString = [URLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
