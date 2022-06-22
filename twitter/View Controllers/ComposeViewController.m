@@ -12,17 +12,22 @@
 
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UINavigationItem *closeButton;
+@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *tweetButton;
 @property (weak, nonatomic) IBOutlet UITextView *composeTextArea;
 @end
 
 @implementation ComposeViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    
+    // Settings for the compose text area
+    [self.composeTextArea.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
+    [self.composeTextArea.layer setBorderWidth:2.0];
+    self.composeTextArea.layer.cornerRadius = 10;
+    self.composeTextArea.clipsToBounds = YES;
 }
 
 - (IBAction)submitTweet:(id)sender {
