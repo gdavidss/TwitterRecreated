@@ -42,6 +42,27 @@
      }];
 }
 
+- (IBAction)didTapRetweet:(id)sender {
+    // Update the local tweet model
+    self.tweet.retweeted = YES;
+    self.tweet.retweetCount += 1;
+    
+    // Update cell UI
+    // GD maybe create a function that sets image automatically
+    UIImage *pressedImg = [UIImage imageNamed:@"retweet-icon-green"];
+    [sender setImage:pressedImg forState:UIControlStateNormal];
+    [self refreshCellData];
+    
+    // Send a POST request to the POST favorites/create endpoint
+    [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+        if(error){
+             NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
+        }
+        else {
+            NSLog(@"Successfully retweeted the following Tweet: %@", tweet.text);
+        }
+    }];
+}
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
