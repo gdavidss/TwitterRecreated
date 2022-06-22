@@ -14,6 +14,8 @@
 #import "ComposeViewController.h"
 #import "Tweet.h"
 #import "TweetCell.h"
+#import "DateTools.h"
+
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -133,6 +135,8 @@
     
     cell.likesNum.text = @(tweet.favoriteCount).stringValue;
     cell.retweetNum.text = @(tweet.retweetCount).stringValue;
+    
+    cell.tweetDate.text = tweet.createdAtString;
     
     // GD create a function that does encapsulates the two checks below
     if (tweet.favorited == YES) {

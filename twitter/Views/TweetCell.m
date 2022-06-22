@@ -8,17 +8,20 @@
 
 #import "TweetCell.h"
 #import "APIManager.h"
+#import "DateTools.h"
 
 @implementation TweetCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+   // self.tweetDate.text = [self.tweet.createdAtString shortTimeAgoSinceNow];
 }
 
 - (void)refreshCellData {
     self.likesNum.text = @(self.tweet.favoriteCount).stringValue;
     self.retweetNum.text = @(self.tweet.retweetCount).stringValue;
+    self.tweetDate.text = self.tweet.createdAtString;
 }
 
 - (IBAction)didTapFavorite:(id)sender {
