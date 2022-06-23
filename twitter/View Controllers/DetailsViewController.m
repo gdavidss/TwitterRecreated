@@ -25,7 +25,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *likesNum;
 
 // buttons
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *closeButton;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
@@ -34,6 +33,7 @@
 @end
 
 @implementation DetailsViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -178,10 +178,6 @@
             }
         }];
     }
-}
-
-- (IBAction)closeTweetCompose:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 /*

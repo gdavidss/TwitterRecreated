@@ -221,7 +221,7 @@
                                             <outlet property="tweetDate" destination="Ure-7k-pIF" id="GHL-LH-iYz"/>
                                             <outlet property="userHandle" destination="HjI-LZ-BOa" id="Twj-eA-2ng"/>
                                             <outlet property="userName" destination="S7z-99-GxR" id="WLe-De-NrW"/>
-                                            <segue destination="CdE-Ny-zaz" kind="showDetail" identifier="detailIdentifier" id="JkO-aG-Luk"/>
+                                            <segue destination="CdE-Ny-zaz" kind="showDetail" identifier="detailIdentifier" id="bXT-7T-xNk"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -465,22 +465,9 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="eyz-yd-hZX">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="zwI-4N-OAH">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Ubb-6m-8XQ">
-                                <rect key="frame" x="16" y="9" width="94" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="close-icon" title=""/>
-                                <connections>
-                                    <action selector="closeTweetCompose:" destination="CdE-Ny-zaz" eventType="touchUpInside" id="eTH-fd-FZi"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="eyz-yd-hZX"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="closeButton" destination="zwI-4N-OAH" id="jiz-Y1-5La"/>
                         <outlet property="favoriteButton" destination="irD-Pq-Pkq" id="TLm-aA-qH1"/>
                         <outlet property="likesNum" destination="B89-9I-yua" id="pL0-be-Nvv"/>
                         <outlet property="messageButton" destination="Fhp-yN-eb6" id="ugz-b8-fqU"/>
