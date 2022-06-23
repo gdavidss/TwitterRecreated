@@ -99,7 +99,7 @@
         
         // Send a POST request to the POST retweet endpoint
         [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
-            if(error){
+            if(error) {
                  NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
             }
             else {
