@@ -89,9 +89,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    Tweet *tweetToPass = self.arrayOfTweets[[self.tableView indexPathForCell:sender].row];
-    DetailsViewController *detailVC = [segue destinationViewController];
-    detailVC.tweet = tweetToPass;
+    if ([segue.identifier  isEqual:@"detailIdentifier"]) {
+        Tweet *tweetToPass = self.arrayOfTweets[[self.tableView indexPathForCell:sender].row];
+        DetailsViewController *detailVC = [segue destinationViewController];
+        detailVC.tweet = tweetToPass;
+    }
 }
 
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
