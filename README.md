@@ -1,8 +1,8 @@
-# Twitter# Project 2 - *Name of App Here*
+# Twitter# Project 2 - TwitterRecreated
 
-**Name of your app** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
+TwitterRecreated is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **X** hours spent in total
+Time spent: 35 hours spent in total
 
 ## User Stories
 
@@ -45,16 +45,15 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. Removing redundancy in code
+2. Updating table more often
+3. Doing other stretch features (replying, clicking on links, etc)
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-GIF created with [Kap](https://getkap.co/).
+![ezgif-1-a58ef2cade](https://user-images.githubusercontent.com/62527620/175424735-6e093275-aa29-4acf-ab2f-5a8af2495457.gif)
 
 ## Notes
 
@@ -68,8 +67,8 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
-
+    Copyright 2022 Gui David
+    
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
