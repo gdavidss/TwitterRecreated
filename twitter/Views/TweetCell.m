@@ -18,12 +18,26 @@
    // self.tweetDate.text = [self.tweet.createdAtString shortTimeAgoSinceNow];
 }
 
+
+/*!
+    @brief Refreshes the number of likes and retweets, as well as the tweet date in the cell.
+ 
+    @discussion This method is called every time the user taps the retweet and favorite button.
+*/
 - (void)refreshCellData {
     self.likesNum.text = @(self.tweet.favoriteCount).stringValue;
     self.retweetNum.text = @(self.tweet.retweetCount).stringValue;
     self.tweetDate.text = self.tweet.createdAtString;
 }
 
+
+/*!
+    @brief Handles tapping the favorite button.
+ 
+    @discussion This method is called every time the favorite button is pressed. It sends a API request to favorite/unfavorite the tweet.
+ 
+    @param  sender  The favorite button.
+ */
 - (IBAction)didTapFavorite:(id)sender {
     if (self.tweet.favorited == YES) {
         // Update the local tweet model
@@ -66,6 +80,14 @@
     }
 }
 
+
+/*!
+    @brief Handles tapping the retweet button.
+ 
+    @discussion This method is called every time the retweet button is pressed. It sends a API request to favorite/unfavorite the tweet.
+ 
+    @param  sender  The retweet button.
+ */
 - (IBAction)didTapRetweet:(id)sender {
     if (self.tweet.retweeted == YES) {
         // Update the local tweet model

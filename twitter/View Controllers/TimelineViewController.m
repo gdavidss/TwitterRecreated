@@ -42,24 +42,37 @@
     [self.tableView insertSubview:refreshControl atIndex:0];
 }
 
+
+/*!
+    @brief Reloads the data whenever the table view is about to appear.
+ 
+    @discussion This method is called every time the view is about to show up. It is mostly relevant when the detail views page is dismissed.
+*/
 - (void)viewWillAppear:(BOOL)animated {
     [self.tableView reloadData];
 }
 
 
+/*!
+    @brief This method is called by the refresh control whenever the user pulls-to-refresh
+ 
+    @discussion This method refetches the timeline and signals the refreshControl to stop spinning.
+ 
+    @param  refreshControl  The refresh control functionality.
+*/
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
-    /*
-     This function is called by the refresh control whenever the user pulls-to-refresh
-     */
-          [self fetchTimeline];
-          
-         // Reload the tableView now that there is new data
-          [self.tableView reloadData];
+      [self fetchTimeline];
 
-         // Tell the refreshControl to stop spinning
-          [refreshControl endRefreshing];
+     // Tell the refreshControl to stop spinning
+      [refreshControl endRefreshing];
 }
 
+
+/*!
+    @brief This method fetches the timeline using the APIManager
+ 
+    @discussion This method reloads the tableView data automatically if the fetching was succesful, otherwise it throws an error.
+*/
 - (void)fetchTimeline {
     /*
      Fetches data from the twitter API and stores it in self.arrayOfTweets
@@ -80,6 +93,7 @@
 }
 
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -88,10 +102,14 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+/*!
+    @brief This method has the purpose of sending data to the details view controller.
+ 
+    @discussion This method is called whenever a tweet cell is pressed
+ 
+    @param  segue  The storyboard that will follow, Sender  The refresh control functionality.
+*/
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     if ([segue.identifier  isEqual:@"detailIdentifier"]) {
         Tweet *tweetToPass = self.arrayOfTweets[[self.tableView indexPathForCell:sender].row];
         DetailsViewController *detailVC = [segue destinationViewController];
@@ -105,12 +123,23 @@
 //   composeController.delegate = self;
 //}
 
+/*!
+    @brief This method inserts a new tweet in the UI after the user composed a tweet.
+ 
+    @discussion This method inserts a method at index zero so that the UI displays it on top.
+ 
+    @param  tweet  The tweet recently composed by the author
+*/
 - (void)didTweet:(Tweet *)tweet {
     [self.arrayOfTweets insertObject:tweet atIndex:0];
     [self.tableView reloadData];
 }
 
-
+/*!
+    @brief This method logs the user out when they press the button.
+ 
+    @param  sender  The logout button.
+*/
 - (IBAction)didTapLogout:(id)sender {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 
@@ -122,11 +151,20 @@
 }
 
 
-
+/*!
+    @brief This method returns the number of elements to be displayed in table view.
+*/
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.arrayOfTweets.count;
 }
 
+/*!
+    @brief This method updates the table view with existing tweets.
+ 
+    @discussion This method sets all relevant data in each cell.
+ 
+    @param  indexPath  The index of the row (a given tweet on the table)
+*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tweetCell"];
     

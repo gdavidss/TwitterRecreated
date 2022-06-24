@@ -30,6 +30,11 @@
     self.composeTextArea.clipsToBounds = YES;
 }
 
+/*!
+    @brief This method handles the submission of a tweet
+  
+    @param  sender  The submit button
+*/
 - (IBAction)submitTweet:(id)sender {
     NSString *tweetContext = self.composeTextArea.text;
     

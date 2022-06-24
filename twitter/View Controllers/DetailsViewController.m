@@ -42,6 +42,12 @@
     [self checkFavoriteAndRetweet];
 }
 
+
+/*!
+    @brief This function sets the label texts and profile picture of the user who made the shown tweet.
+ 
+    @discussion This method is called when the details view page appears.
+*/
 - (void)loadTweetUser{
     // Loads info about the user
     self.userName.text = self.tweet.user.name;
@@ -54,6 +60,12 @@
     [self.profilePicture setImageWithURL:url];
 }
 
+
+/*!
+    @brief This function sets the label texts of the tweet cell accordingly.
+ 
+    @discussion This method is called when the details view page appears.
+*/
 - (void)loadTweetInfos {
     // Loads info about tweet content and stats
     self.tweetContent.text = self.tweet.text;
@@ -67,10 +79,14 @@
     self.tweetDate.text = self.tweet.createdAtString;
 }
 
+
+/*!
+    @brief This function checks if the tweet and favorite button was pressed.
+ 
+    @discussion This method is called when the details view page appears.
+*/
 -(void)checkFavoriteAndRetweet{
-    // checks if tweet was favorited
     if (self.tweet.favorited == YES) {
-        // Update cell UI
         UIImage *pressedImg = [UIImage imageNamed:@"favor-icon-red"];
         [self.favoriteButton setImage:pressedImg forState:UIControlStateNormal];
         // GD use set image programatically before
@@ -78,10 +94,7 @@
         UIImage *pressedImg = [UIImage imageNamed:@"favor-icon"];
         [self.favoriteButton setImage:pressedImg forState:UIControlStateNormal];
     }
-    
-    // check if tweet was retweeted
     if (self.tweet.retweeted == YES) {
-        // Update cell UI
         UIImage *pressedImg = [UIImage imageNamed:@"retweet-icon-green"];
         [self.retweetButton setImage:pressedImg forState:UIControlStateNormal];
     } else {
@@ -90,12 +103,26 @@
     }
 }
 
+
+/*!
+    @brief Refreshes the number of likes and retweets, as well as the tweet date in the cell.
+ 
+    @discussion This method is called every time the user taps the retweet and favorite button.
+*/
 - (void)refreshCellData {
     self.likesNum.text = @(self.tweet.favoriteCount).stringValue;
     self.retweetNum.text = @(self.tweet.retweetCount).stringValue;
     self.tweetDate.text = self.tweet.createdAtString;
 }
 
+
+/*!
+    @brief Handles tapping the favorite button.
+ 
+    @discussion This method is called every time the favorite button is pressed. It sends a API request to favorite/unfavorite the tweet.
+ 
+    @param  sender  The favorite button.
+ */
 - (IBAction)didTapFavorite:(id)sender {
     if (self.tweet.favorited == YES) {
         // Update the local tweet model
@@ -138,6 +165,14 @@
     }
 }
 
+
+/*!
+    @brief Handles tapping the retweet button.
+ 
+    @discussion This method is called every time the retweet button is pressed. It sends a API request to favorite/unfavorite the tweet.
+ 
+    @param  sender  The retweet button.
+ */
 - (IBAction)didTapRetweet:(id)sender {
     if (self.tweet.retweeted == YES) {
         // Update the local tweet model
