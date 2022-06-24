@@ -73,6 +73,7 @@
         // Update cell UI
         UIImage *pressedImg = [UIImage imageNamed:@"favor-icon-red"];
         [self.favoriteButton setImage:pressedImg forState:UIControlStateNormal];
+        // GD use set image programatically before
     } else {
         UIImage *pressedImg = [UIImage imageNamed:@"favor-icon"];
         [self.favoriteButton setImage:pressedImg forState:UIControlStateNormal];

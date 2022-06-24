@@ -42,6 +42,10 @@
     [self.tableView insertSubview:refreshControl atIndex:0];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tableView reloadData];
+}
+
 
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
     /*
