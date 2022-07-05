@@ -62,8 +62,6 @@
 */
 - (void)beginRefresh:(UIRefreshControl *)refreshControl {
       [self fetchTimeline];
-
-     // Tell the refreshControl to stop spinning
       [refreshControl endRefreshing];
 }
 
@@ -74,9 +72,6 @@
     @discussion This method reloads the tableView data automatically if the fetching was succesful, otherwise it throws an error.
 */
 - (void)fetchTimeline {
-    /*
-     Fetches data from the twitter API and stores it in self.arrayOfTweets
-     */
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
@@ -116,12 +111,6 @@
         detailVC.tweet = tweetToPass;
     }
 }
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//   UINavigationController *navigationController = [segue destinationViewController];
-//   ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-//   composeController.delegate = self;
-//}
 
 /*!
     @brief This method inserts a new tweet in the UI after the user composed a tweet.

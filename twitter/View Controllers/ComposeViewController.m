@@ -19,6 +19,7 @@
 
 @implementation ComposeViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -29,6 +30,7 @@
     self.composeTextArea.layer.cornerRadius = 10;
     self.composeTextArea.clipsToBounds = YES;
 }
+
 
 /*!
     @brief This method handles the submission of a tweet

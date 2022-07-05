@@ -77,6 +77,12 @@
     self.likesNum.text = @(self.tweet.favoriteCount).stringValue;
     self.retweetNum.text = @(self.tweet.retweetCount).stringValue;
     self.tweetDate.text = self.tweet.createdAtString;
+    
+    UIImage *replyImg = [UIImage imageNamed:@"reply-icon"];
+    [self.favoriteButton setImage:replyImg forState:UIControlStateNormal];
+    
+    UIImage *messageImg = [UIImage imageNamed:@"message-icon"];
+    [self.messageButton setImage:messageImg forState:UIControlStateNormal];
 }
 
 
